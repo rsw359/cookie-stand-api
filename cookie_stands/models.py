@@ -20,15 +20,15 @@ class CookieStand(models.Model):
 
     def save(self, *args, **kwargs):
 
-        if not self.pk and not self.hourly_sales:
+        if not self.pk and not self.hourlySales:
             min = self.minCustomers
             max = self.maxCustomers
 
             cookies_each_hour = [
-                int(random.randint(min, max) * self.average_cookies_per_sale)
+                int(random.randint(min, max) * self.avgcookies)
                 for _ in range(14)
             ]
 
-            self.hourly_sales = cookies_each_hour
+            self.hourlySales = cookies_each_hour
 
         super().save(*args, **kwargs)
